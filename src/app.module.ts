@@ -1,6 +1,7 @@
 import { Module, flatten } from '@nestjs/common';
 
 import { GraphQLModule } from '@nestjs/graphql'
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [GraphQLModule.forRoot({
@@ -8,6 +9,6 @@ import { GraphQLModule } from '@nestjs/graphql'
     resolverValidationOptions: {
       requireResolversForResolveType: false
     }
-  })]
+  }), MessagesModule]
 })
 export class AppModule { }
