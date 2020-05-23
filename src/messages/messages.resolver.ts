@@ -1,23 +1,17 @@
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 
+import { PrismaService } from '../prisma/prisma.service'
 @Resolver()
 export class MessagesResolver {
-    messagesSeedArray = [
-        { id: 0, description: 'The seed message' },
-        { id: 1, description: 'Another message' }
-    ];
+    constructor(private readonly prisma: PrismaService) { }
 
-    @Query('messages')
-    getMessages() {
-        return this.messagesSeedArray;
+    @Query()
+    messages(@Args() args) {
+        return this.prisma.query.messages(args);
     }
 
     @Mutation()
-    createMessage(@Args('description') description: string) {
-        const id = this.messagesSeedArray.length;
-        const newMessage = { id, description };
-        this.messagesSeedArray.push(newMessage);
-
-        return newMessage;
+    createMessage(@Args() args) {
+        return this.prisma.mutation.createMessage(args);
     }
 }
