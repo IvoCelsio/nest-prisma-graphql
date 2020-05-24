@@ -2,3 +2,9 @@ type Message {
   id: ID! @id
   description: String!
 }
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  password: String!
+}
