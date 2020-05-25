@@ -1,5 +1,5 @@
 type Message {
-  id: Int!
+  id: ID!
   description: String!
 }
 
